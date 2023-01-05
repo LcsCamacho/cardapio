@@ -1,8 +1,7 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.scss'
 import Header from '../components/Header'
-import { GetStaticProps } from 'next'
+import { GetServerSideProps} from 'next'
 import { useState } from 'react';
 import Cards from '../components/Cards'
 
@@ -31,12 +30,11 @@ interface CardapioProps {
 }
 
 interface ComboProps {
-  comboList: string[];
   cardapioData: {
     cardapio: CardapioProps[]
   }
 }
-export default function Home({ comboList, cardapioData }: ComboProps) {
+export default function Home({ cardapioData }: ComboProps) {
   const [comboFamily, setComboFamily] = useState(false)
   const [promocoes, setPromocoes] = useState(false)
   const states = [
@@ -75,7 +73,7 @@ export default function Home({ comboList, cardapioData }: ComboProps) {
         <div className={styles.mainContainer}>
           <ul className={styles.combos}>
 
-            {comboList.map((el: string, i: number) => (
+            {combos.map((el: string, i: number) => (
               <li key={i}>{el}</li>
             ))}
 
@@ -83,7 +81,7 @@ export default function Home({ comboList, cardapioData }: ComboProps) {
 
           <div className={styles.cardapio}>
             {
-              comboList.map((el: string, i: number) => (
+              combos.map((el: string, i: number) => (
                 <div key={i} className={styles.product}>
                   <div className={styles.titleProduct} onClick={control[functions[i]]}>
                     <span>{el}</span>
@@ -102,16 +100,22 @@ export default function Home({ comboList, cardapioData }: ComboProps) {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const resp = await fetch('http://localhost:3000/api/cardapio')
   const cardapioData = await resp.json()
 
-  const comboList = combos
+  if (!cardapioData) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+  }
+
   return {
     props: {
-      comboList,
       cardapioData
     },
-    revalidate: 60 * 15
   }
 }

@@ -83,7 +83,8 @@ export default function Header() {
                     src={'/../public/logo.png'}
                     width={160}
                     height={80}
-                    priority />
+                    priority 
+                    alt={'logo'}/>
                 <div className={styles.checkMenu} onClick={openMobileMenu}>
                     Mais Informações
                 </div>
@@ -94,7 +95,8 @@ export default function Header() {
                             <Image className={styles.logo}
                                 src={'/../public/logo.png'}
                                 width={100}
-                                height={70} />
+                                height={70} 
+                                alt={'logo'}/>
                             <ul>
                                 <li id={styles.tipoAtend}
                                     onClick={infos.modalTiposAtendimento.open}>Tipos de atendimento</li>

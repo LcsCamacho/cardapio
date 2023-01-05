@@ -124,7 +124,8 @@ export default function Modal() {
                                 <Image src={'/../public/reception-bell.png'}
                                     width={50}
                                     height={80}
-                                    priority />
+                                    priority 
+                                    alt={'reception'}/>
                                 <p>Atendimento?</p>
                                 <p>Sim</p>
                             </div>
@@ -132,7 +133,8 @@ export default function Modal() {
                                 <Image src={'/../public/entrega.png'}
                                     width={50}
                                     height={80}
-                                    priority />
+                                    priority 
+                                    alt={'entrega'}/>
                                 <p>Entrega?</p>
                                 <p>Sim</p>
                             </div>
@@ -140,7 +142,8 @@ export default function Modal() {
                                 <Image src={'/../public/take-away.png'}
                                     width={50}
                                     height={80}
-                                    priority />
+                                    priority 
+                                    alt={'take'}/>
                                 <p>Retirada?</p>
                                 <p>Sim</p>
                             </div>
