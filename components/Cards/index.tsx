@@ -33,7 +33,7 @@ export default function Cards({ cardapioData }: DataProps) {
                         </div>
                     </div>
                     <div className={styles.cardImg}>
-                        <Image src={`/../public/images/${el.img}`}
+                        <Image src={`/images/${el.img}`}
                             className={styles.lancheImg}
                             height={200}
                             width={180}

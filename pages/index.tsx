@@ -58,7 +58,6 @@ export default function Home({ cardapioData }: ComboProps) {
     }
   }
 
-
   return (
     <>
       <Head>
@@ -101,17 +100,12 @@ export default function Home({ cardapioData }: ComboProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
+  var cardapioData
   const resp = await fetch('http://localhost:3000/api/cardapio')
-  const cardapioData = await resp.json()
-
-  if (!cardapioData) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    }
-  }
+  .then((res) => res.json())
+  .then((data) => cardapioData = data)
+  .catch(err => console.log(err))
+  
 
   return {
     props: {
