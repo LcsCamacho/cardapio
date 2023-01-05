@@ -84,7 +84,7 @@ export default function Home({ comboList, cardapioData }: ComboProps) {
           <div className={styles.cardapio}>
             {
               comboList.map((el: string, i: number) => (
-                <div className={styles.product}>
+                <div key={i} className={styles.product}>
                   <div className={styles.titleProduct} onClick={control[functions[i]]}>
                     <span>{el}</span>
                     {states[i] === false ? <span>+</span> : <span>-</span>}
