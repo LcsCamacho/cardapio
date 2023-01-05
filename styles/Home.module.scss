@@ -1,0 +1,61 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  
+  .mainContainer {
+
+
+    ul {
+      display: inline-flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      height: max-content;
+      cursor: pointer;
+      overflow-x: auto;
+      width: 90vw;
+      padding: 20px;
+
+      li {
+        padding: 5px;
+        text-align: center;
+        height: 100%;
+        min-width: 150px;
+        text-align: center;
+        border-bottom: 2px solid #000;
+        -webkit-user-select: auto;
+        user-select: none;
+
+        &:hover {
+          background: rgb(253, 253, 253);
+          color: #000;
+          border-bottom: 2px solid #ff4500;
+        }
+      }
+    }
+  }
+}
+
+.cardapio {
+  margin-top: 10vh;
+  width: 95vw;
+  
+  .product {
+      margin: 1rem 0;
+      display: flex;
+      flex-direction: column;
+      
+      .titleProduct {
+          justify-content: space-between;
+          display: flex;
+          align-items: center;
+          width: 100%;
+          border-bottom: 2px solid #e2520a;
+
+          span {
+              cursor: pointer;
+          }
+      }
+    }
+  }

@@ -1,0 +1,128 @@
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 45vh;
+
+    .contentHeader {
+        width: 85%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 40px;
+
+        .tel {
+            display: flex;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .status {
+            cursor: pointer;
+            -webkit-user-select: none;
+            user-select: none;
+
+            .open {
+                background-color: #00f836;
+                padding: 10px;
+
+                &:hover {
+                    background-color: #56f478;
+                }
+            }
+            .close {
+                background-color: #f80000;
+                padding: 10px;
+
+                &:hover {
+                    background-color: #f45959;
+                }
+            }
+        }
+    }
+    .subHeader {
+        width: 100%;
+        display: flex;
+        background-color: #e2520a;
+        padding: 1rem 6%;
+        position: relative;
+        height: calc(45vh - 40px);
+
+        .logo {
+            width: 160px !important;
+            height: 80px !important;
+            position: absolute;
+            top: -10px !important;
+            margin: 0 !important;
+            object-fit: contain;
+        }
+        .checkMenu {
+            position: absolute;
+            right: 20px;
+            margin: 20px;
+            border: 1px dashed #fff;
+            padding: 10px;
+            cursor: pointer;
+            display: none;
+            &:active {
+                background-color: #f29f75;
+            }
+        }
+
+        .mobileMenu {
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            z-index: +1;
+            left: -100%;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.224);
+            animation: appear 0.2s linear forwards;
+
+            @keyframes appear {
+                to {
+                    left: 0;
+                }
+            }
+            .mobileMenuContainer {
+                width: 40%;
+                background-color: #fff;
+                height: 100vh;
+                padding: 10px;
+
+                ul {
+                    li {
+                        margin: 20px 0;
+                        padding: 0 3px;
+                        color: #000;
+                        border-bottom: 1px solid #dad9d9;
+                        transition: all 0.3s;
+                        cursor: pointer;
+                        -webkit-user-select: none;
+                        user-select: none;
+                        font-weight: bold;
+                        &:hover {
+                            transform: translateY(-5px);
+                        }
+                    }
+                }
+            }
+        }
+        .title {
+            font-size: 1.3rem;
+            margin: 0.5rem;
+            position: absolute;
+            bottom: 0;
+        }
+    }
+}
+
+@media (max-width: 570px) {
+    .checkMenu {
+        display: block !important;
+    }
+}

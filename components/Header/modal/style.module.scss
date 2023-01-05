@@ -1,0 +1,173 @@
+.modal {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #00000048;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    z-index: +1;
+
+    .modalContainer {
+        width: 50vw;
+        min-width: 350px;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        border-radius: 10px;
+        padding: 15px;
+        z-index: +1;
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+
+            span {
+                font-weight: bold;
+                cursor: pointer;
+            }
+        }
+
+        main {
+            display: flex;
+            min-width: 320px;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #b8b8b8;
+            width: 100%;
+            padding: 10px;
+
+            h1 {
+                align-self: center;
+            }
+
+            span {
+                border-radius: 20px;
+                background-color: #e2520a;
+                padding: 10px 15px;
+                margin: auto;
+            }
+
+            .modalCard {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                margin: 0 10px;
+                padding: 0 2px;
+                border-radius: 5px;
+                box-shadow: 2px 2px 2px 2px #e4e3e348;
+
+                &:hover {
+                    background-color: #e4e3e348;
+                }
+                p {
+                    text-align: center;
+
+                    &:nth-child(3) {
+                        font-weight: bold;
+                    }
+                }
+            }
+
+            table {
+                width: 100%;
+                background-color: #f6f6f6;
+                -webkit-user-select: none;
+                user-select: none;
+                &:hover {
+                    box-shadow: 2px 2px 2px 2px #3c3c3c48;
+                }
+                thead {
+                    background: #161616;
+                    width: 100%;
+                    color: #fff;
+
+                    tr {
+                        th {
+                            padding: 10px;
+                            width: calc(100% / 3);
+                        }
+                    }
+                }
+                tbody {
+                    tr {
+                        background-color: #e2520a;
+
+                        td {
+                            padding: 10px;
+
+                            &:hover {
+                                background: #ef7722;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.infos {
+    width: 100%;
+    display: none;
+    ul {
+        display: flex;
+        justify-content: space-between;
+
+        li {
+            padding: 8px;
+            margin: 7px;
+            flex-direction: column;
+            display: flex;
+
+            span:nth-child(2) {
+                font-weight: bold;
+            }
+        }
+    }
+}
+.listHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    ul {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        -webkit-user-select: none;
+        user-select: none;
+
+        li {
+            padding: 2px;
+            margin: 10px;
+            transition: transform 0.2s;
+            cursor: pointer;
+
+            &:hover {
+                border-radius: 5px;
+                transform: scale(1.1);
+            }
+        }
+    }
+}
+@media (max-width: 570px) {
+    .title {
+        display: inline !important;
+    }
+
+    .infos {
+        display: block;
+    }
+
+    .listHeader {
+        display: none !important;
+    }
+}
