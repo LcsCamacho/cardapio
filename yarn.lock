@@ -64,9 +64,9 @@
     glob "7.1.7"
 
 "@next/font@12":
-  version "12.3.2-canary.2"
-  resolved "https://registry.yarnpkg.com/@next/font/-/font-12.3.2-canary.2.tgz#b2161bcd49325554c366739f4cf5c932a6066c2d"
-  integrity sha512-l0tnVfXF8ioS9KUQ0KlVsqQNNd+LD24H/xCHe0kAsTuT34439IOyGRJxvcm5gSSxqRleuRuqwXFXfsCojJD9uQ==
+  version "12.3.2-canary.43"
+  resolved "https://registry.yarnpkg.com/@next/font/-/font-12.3.2-canary.43.tgz#c64c10942ca52cddb04e80ab40b82d441ef364f1"
+  integrity sha512-t/SJBD0FriyIMtyBUXkL8NXu+KbxbbI9+Ak8lLGnWPcrY+KuUFEuUoXQ5gRpMQ0naszMsw9hdEIByT5S+0bSdQ==
 
 "@next/swc-android-arm-eabi@12.3.4":
   version "12.3.4"
