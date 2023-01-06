@@ -101,7 +101,7 @@ export default function Home({ cardapioData }: ComboProps) {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   var cardapioData
-  const resp = await fetch('http://localhost:3000/api/cardapio')
+  const resp = await fetch('https://cardapio-psi-nine.vercel.app/api/cardapio')
   .then((res) => res.json())
   .then((data) => cardapioData = data)
   .catch(err => console.log('Erro:::::'+err))
