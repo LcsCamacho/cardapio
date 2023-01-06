@@ -80,7 +80,7 @@ export default function Header() {
             </div>
             <div className={styles.subHeader}>
                 <Image className={styles.logo}
-                    src={'/../public/logo.png'}
+                    src={'/logo.png'}
                     width={160}
                     height={80}
                     priority 
@@ -93,7 +93,7 @@ export default function Header() {
                         <div className={styles.mobileMenuContainer}>
 
                             <Image className={styles.logo}
-                                src={'/../public/logo.png'}
+                                src={'/logo.png'}
                                 width={100}
                                 height={70} 
                                 priority
