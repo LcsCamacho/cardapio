@@ -121,7 +121,7 @@ export default function Modal() {
                         </header>
                         <main>
                             <div className={styles.modalCard}>
-                                <Image src={'/../public/reception-bell.png'}
+                                <Image src={'/reception-bell.png'}
                                     width={50}
                                     height={80}
                                     priority 
@@ -130,7 +130,7 @@ export default function Modal() {
                                 <p>Sim</p>
                             </div>
                             <div className={styles.modalCard}>
-                                <Image src={'/../public/entrega.png'}
+                                <Image src={'/entrega.png'}
                                     width={50}
                                     height={80}
                                     priority 
@@ -139,7 +139,7 @@ export default function Modal() {
                                 <p>Sim</p>
                             </div>
                             <div className={styles.modalCard}>
-                                <Image src={'/../public/take-away.png'}
+                                <Image src={'/take-away.png'}
                                     width={50}
                                     height={80}
                                     priority 

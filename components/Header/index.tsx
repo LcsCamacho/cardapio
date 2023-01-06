@@ -96,6 +96,7 @@ export default function Header() {
                                 src={'/../public/logo.png'}
                                 width={100}
                                 height={70} 
+                                priority
                                 alt={'logo'}/>
                             <ul>
                                 <li id={styles.tipoAtend}

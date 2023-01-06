@@ -104,7 +104,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const resp = await fetch('http://localhost:3000/api/cardapio')
   .then((res) => res.json())
   .then((data) => cardapioData = data)
-  .catch(err => console.log(err))
+  .catch(err => console.log('Erro:::::'+err))
   
 
   return {
