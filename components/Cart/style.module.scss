@@ -1,0 +1,33 @@
+.container {
+    padding: 10px;
+    position: fixed;
+    bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    .value,.search {
+        display: inline-flex;
+        background: #e2520a;
+        border-radius: 20px;
+        padding: 10px;
+        align-items: center;
+        transition: background-color .2s;
+        cursor: pointer;
+        box-shadow: 4px 3px 24px 2px #E2520A9e;
+
+        &:hover{
+            filter: brightness(1.2);
+        }
+    }
+    .value {
+        svg {
+            margin-bottom: 2px;
+        }
+    }
+
+    .search {
+        padding: 10px 15px;
+    }
+}

@@ -4,8 +4,9 @@ import Header from '../components/Header'
 import { GetServerSideProps} from 'next'
 import { useState } from 'react';
 import Cards from '../components/Cards'
+import Cart from './../components/Cart/index';
 
-const combos = [
+const combos:string[] = [
   'Combos Familias',
   'Promoções',
 
@@ -37,17 +38,17 @@ interface ComboProps {
 export default function Home({ cardapioData }: ComboProps) {
   const [comboFamily, setComboFamily] = useState(false)
   const [promocoes, setPromocoes] = useState(false)
+  const [cartModal, setCartModal] = useState(false)
   const states = [
     comboFamily,
     promocoes
   ]
-  const functions = [
+  const functions :string[] = [
     'comboFamily',
     'promocoes'
   ]
 
   const control:any = {
-
      'promocoes':() => {
       if (promocoes === false) setPromocoes(true)
       else setPromocoes(false)
@@ -56,6 +57,10 @@ export default function Home({ cardapioData }: ComboProps) {
       if (comboFamily === false) setComboFamily(true)
       else setComboFamily(false)
     }
+  }
+
+  function controlCartModal() {
+
   }
 
   return (
@@ -93,6 +98,9 @@ export default function Home({ cardapioData }: ComboProps) {
               ))
             }
           </div>
+        </div>
+        <div className={styles.cart} onClick={controlCartModal}>
+          <Cart />
         </div>
       </main>
     </>
