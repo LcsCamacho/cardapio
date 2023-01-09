@@ -1,29 +1,43 @@
-import styles from './styles.module.scss'
+import styles from './style.module.scss'
 import Modal from 'react-modal'
-export default function name(props) {
+import useAppData from '../../context/hook/useAppData';
+import { useState } from "react";
+import { prodProps } from '../../types/types';
+
+interface ModalProps{
+    modalOpenProps:boolean;
+}
+
+export default function CartModal(props:ModalProps) {
     var { modalOpenProps } = props
+    const [modal, setModal] = useState(modalOpenProps)
+    const ctx = useAppData()
+    var { prods }: prodProps = ctx
+    console.log(prods)
 
     function closeModal() {
-        modalOpenProps = false
+         setModal(false)
     }
     return (
-        <Modal
-            isOpen={modalOpenProps}
-            onRequestClose={closeModal}
-            contentLabel="Modal"
-            overlayClasName={styles.modalOverlay}
-            className={styles.modal}
-        >
-            <div className={styles.modalContent}>
-                <header>
-                    <span>SEU PEDIDO</span>
-                    <span className={styles.close}>X</span>
-                </header>
-                <main>
-                    <span>Seu pedido está vazio :(</span>
-                </main>
-            </div>
-
-        </Modal>
+        <>
+            <Modal
+                isOpen={modal}
+                onRequestClose={closeModal}
+                contentLabel="Modal"
+                overlayClassName={styles.modalOverlay}
+                className={styles.modal}
+                ariaHideApp={false}
+            >
+                <div className={styles.modalContent}>
+                    <header>
+                        <span>SEU PEDIDO</span>
+                        <span onClick={closeModal} className={styles.close}>X</span>
+                    </header>
+                    <main>
+                        <span>Seu pedido está vazio :(</span>
+                    </main>
+                </div>
+            </Modal>
+        </>
     )
 }

@@ -1,12 +1,13 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.scss'
 import Header from '../components/Header'
-import { GetServerSideProps} from 'next'
+import { GetStaticProps } from 'next'
 import { useState } from 'react';
 import Cards from '../components/Cards'
 import Cart from './../components/Cart/index';
+import { ComboProps } from '../types/types';
 
-const combos:string[] = [
+const combos: string[] = [
   'Combos Familias',
   'Promoções',
 
@@ -23,44 +24,28 @@ const combos:string[] = [
 //   'Cerveja',
 //   'Maionese',
 
-interface CardapioProps {
-  description: string;
-  img: string;
-  price: string;
-  title: string
-}
 
-interface ComboProps {
-  cardapioData: {
-    cardapio: CardapioProps[]
-  }
-}
 export default function Home({ cardapioData }: ComboProps) {
   const [comboFamily, setComboFamily] = useState(false)
   const [promocoes, setPromocoes] = useState(false)
-  const [cartModal, setCartModal] = useState(false)
   const states = [
     comboFamily,
     promocoes
   ]
-  const functions :string[] = [
+  const functions: string[] = [
     'comboFamily',
     'promocoes'
   ]
 
-  const control:any = {
-     'promocoes':() => {
+  const control: any = {
+    'promocoes': () => {
       if (promocoes === false) setPromocoes(true)
       else setPromocoes(false)
     },
-    'comboFamily':() => {
+    'comboFamily': () => {
       if (comboFamily === false) setComboFamily(true)
       else setComboFamily(false)
     }
-  }
-
-  function controlCartModal() {
-
   }
 
   return (
@@ -78,7 +63,7 @@ export default function Home({ cardapioData }: ComboProps) {
           <ul className={styles.combos}>
 
             {combos.map((el: string, i: number) => (
-              <li key={i}>{el}</li>
+              <li onClick={control[functions[i]]} key={i}>{el}</li>
             ))}
 
           </ul>
@@ -99,25 +84,26 @@ export default function Home({ cardapioData }: ComboProps) {
             }
           </div>
         </div>
-        <div className={styles.cart} onClick={controlCartModal}>
-          <Cart />
+        <div className={styles.cart}>
+          <Cart cardapioData={cardapioData} />
         </div>
       </main>
     </>
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   var cardapioData
   const resp = await fetch('https://cardapio-psi-nine.vercel.app/api/cardapio')
-  .then((res) => res.json())
-  .then((data) => cardapioData = data)
-  .catch(err => console.log('Erro:::::'+err))
-  
+    .then((res) => res.json())
+    .then((data) => cardapioData = data)
+    .catch(err => console.log('Erro:::::' + err))
+
 
   return {
     props: {
       cardapioData
     },
+    revalidate: 60 * 10
   }
 }

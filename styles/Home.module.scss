@@ -15,8 +15,7 @@
       display: inline-flex;
       align-items: flex-start;
       justify-content: flex-start;
-      height: max-content;
-      cursor: pointer;
+      height: 100%;
       overflow-x: auto;
       width: 95%;
       padding: 20px;
@@ -30,6 +29,7 @@
         border-bottom: 2px solid #000;
         -webkit-user-select: auto;
         user-select: none;
+        cursor: pointer;
 
         &:hover {
           background: rgb(253, 253, 253);

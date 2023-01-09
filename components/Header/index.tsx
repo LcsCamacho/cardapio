@@ -1,14 +1,21 @@
 import styles from './style.module.scss'
 import { BsFillTelephoneFill } from 'react-icons/bs'
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import stylesModal from './modal.module.scss';
+
 export default function Header() {
     const [modaltiposAtend, setModalTiposAtend] = useState(false)
     const [modalHorariosAtend, setmodalHorariosAtend] = useState(false)
     const [modalFormasPag, setmodalFormasPag] = useState(false)
     const [modalHelp, setmodalHelp] = useState(false)
     const [mobileMenu, setMobileMenu] = useState(false)
+    const [date, setDate] = useState<number>(0)
+
+    useEffect(() => {
+        setDate(Number(new Date().toLocaleTimeString().slice(0, 2)))
+    }, [])
+
     const relacaoHorarios = [
         {
             'abre': '18:00',
@@ -81,8 +88,6 @@ export default function Header() {
         }
     }
 
-    const dateNumber = Number(new Date().toLocaleTimeString().slice(0, 2))
-
     function openMobileMenu() {
         if (mobileMenu === false) {
             setMobileMenu(true)
@@ -99,17 +104,16 @@ export default function Header() {
     }
 
     return (
-        <header className={styles.container}>
+        <header  className={styles.container}>
             <div className={styles.contentHeader}>
                 <div className={styles.tel}>
                     <BsFillTelephoneFill />
                     <span>19998566555</span>
                 </div>
                 <div className={styles.status}>
-                    {
-                        dateNumber >= 18 && dateNumber <= 23.9 ?
-                            <span className={styles.open}>Aberto</span> :
-                            <span className={styles.close}>Fechado</span>
+                    {date < 24 && date > 18 ? 
+                    <span className={styles.open}>Aberto</span> : 
+                    <span className={styles.close}>Fechado</span>
                     }
                 </div>
             </div>
@@ -175,114 +179,113 @@ export default function Header() {
                         </ul>
                     </div>
                 </div>
-                
+
 
                 {modaltiposAtend === true && (
-                <div className={stylesModal.modal}>
-                    <div className={stylesModal.modalContainer}>
-                        <header>
-                            <span>Detalhes</span>
-                            <span className={stylesModal.close} onClick={infos.modalTiposAtendimento.close}>X</span>
-                        </header>
-                        <main>
-                            <div className={stylesModal.modalCard}>
-                                <Image src={'/reception-bell.png'}
-                                    width={50}
-                                    height={80}
-                                    priority 
-                                    alt={'reception'}/>
-                                <p>Atendimento?</p>
-                                <p>Sim</p>
-                            </div>
-                            <div className={stylesModal.modalCard}>
-                                <Image src={'/entrega.png'}
-                                    width={50}
-                                    height={80}
-                                    priority 
-                                    alt={'entrega'}/>
-                                <p>Entrega?</p>
-                                <p>Sim</p>
-                            </div>
-                            <div className={stylesModal.modalCard}>
-                                <Image src={'/take-away.png'}
-                                    width={50}
-                                    height={80}
-                                    priority 
-                                    alt={'take'}/>
-                                <p>Retirada?</p>
-                                <p>Sim</p>
-                            </div>
-                        </main>
+                    <div className={stylesModal.modal}>
+                        <div className={stylesModal.modalContainer}>
+                            <header>
+                                <span>Detalhes</span>
+                                <span className={stylesModal.close} onClick={infos.modalTiposAtendimento.close}>X</span>
+                            </header>
+                            <main>
+                                <div className={stylesModal.modalCard}>
+                                    <Image src={'/reception-bell.png'}
+                                        width={50}
+                                        height={80}
+                                        priority
+                                        alt={'reception'} />
+                                    <p>Atendimento?</p>
+                                    <p>Sim</p>
+                                </div>
+                                <div className={stylesModal.modalCard}>
+                                    <Image src={'/entrega.png'}
+                                        width={50}
+                                        height={80}
+                                        priority
+                                        alt={'entrega'} />
+                                    <p>Entrega?</p>
+                                    <p>Sim</p>
+                                </div>
+                                <div className={stylesModal.modalCard}>
+                                    <Image src={'/take-away.png'}
+                                        width={50}
+                                        height={80}
+                                        priority
+                                        alt={'take'} />
+                                    <p>Retirada?</p>
+                                    <p>Sim</p>
+                                </div>
+                            </main>
+                        </div>
                     </div>
-                </div>
-            )}
-            {modalHorariosAtend === true && (
-                <div className={stylesModal.modal} >
-                    <div className={stylesModal.modalContainer}>
-                        <header>
-                            <span>Horário de Funcionamento</span>
-                            <span className={stylesModal.close} onClick={infos.modalHorariosAtend.close}>X</span>
-                        </header>
-                        <main>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Dia</th>
-                                        <th>Abre:</th>
-                                        <th>Fecha:</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {relacaoHorarios.map((element, i) => (
-                                        <tr key={i}>
-                                            <td>{element.dia}</td>
-                                            <td>{element.abre}</td>
-                                            <td>{element.fecha}</td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </main>
-                    </div>
-                </div>
-
-            )}
-            {modalFormasPag === true && (
-                <div className={stylesModal.modalFormaPagamento}>
+                )}
+                {modalHorariosAtend === true && (
                     <div className={stylesModal.modal} >
                         <div className={stylesModal.modalContainer}>
                             <header>
-                                <span>Formas de Pagamento</span>
-                                <span className={stylesModal.close} onClick={infos.modalFormasPag.close}>X</span>
+                                <span>Horário de Funcionamento</span>
+                                <span className={stylesModal.close} onClick={infos.modalHorariosAtend.close}>X</span>
                             </header>
                             <main>
-                                <span>Pix</span>
-                                <span>Cartão</span>
-                                <span>Dinheiro</span>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Dia</th>
+                                            <th>Abre:</th>
+                                            <th>Fecha:</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {relacaoHorarios.map((element, i) => (
+                                            <tr key={i}>
+                                                <td>{element.dia}</td>
+                                                <td>{element.abre}</td>
+                                                <td>{element.fecha}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
                             </main>
                         </div>
                     </div>
-                </div>
-            )}
-            {modalHelp === true && (
-                <div className={stylesModal.modalHelp}>
-                    <div className={stylesModal.modal} >
-                        <div className={stylesModal.mapContainer}>
-                            <header>
-                                <span>Localização</span>
-                                <span className={stylesModal.close} onClick={infos.modalHelp.close}>X</span>
-                            </header>
-                            <main className={stylesModal.helpMain}>
-                                <p>Avenida Doutor Carlos Burgos, 3380, Loteamento Nardini, Amparo - SP, 13900000</p>
-                                <iframe className={stylesModal.map} 
-                                src="https://www.google.com/maps?q=Avenida Doutor Carlos Burgos, 3380, Loteamento Nardini, Amparo - SP, 13900000, Ney Lanches Amparo&amp;output=embed" 
-                                width="100%" height="450"/>
-                            </main>
-                        </div>
-                    </div>
-                </div>
-            )}
 
+                )}
+                {modalFormasPag === true && (
+                    <div className={stylesModal.modalFormaPagamento}>
+                        <div className={stylesModal.modal} >
+                            <div className={stylesModal.modalContainer}>
+                                <header>
+                                    <span>Formas de Pagamento</span>
+                                    <span className={stylesModal.close} onClick={infos.modalFormasPag.close}>X</span>
+                                </header>
+                                <main>
+                                    <span>Pix</span>
+                                    <span>Cartão</span>
+                                    <span>Dinheiro</span>
+                                </main>
+                            </div>
+                        </div>
+                    </div>
+                )}
+                {modalHelp === true && (
+                    <div className={stylesModal.modalHelp}>
+                        <div className={stylesModal.modal} >
+                            <div className={stylesModal.mapContainer}>
+                                <header>
+                                    <span>Localização</span>
+                                    <span className={stylesModal.close} onClick={infos.modalHelp.close}>X</span>
+                                </header>
+                                <main className={stylesModal.helpMain}>
+                                    <p>Avenida Doutor Carlos Burgos, 3380, Loteamento Nardini, Amparo - SP, 13900000</p>
+                                    <iframe className={stylesModal.map}
+                                        src="https://www.google.com/maps?q=Avenida Doutor Carlos Burgos, 3380, Loteamento Nardini, Amparo - SP, 13900000, Ney Lanches Amparo&amp;output=embed"
+                                        width="100%" height="450" />
+                                </main>
+                            </div>
+                        </div>
+                    </div>
+                )}
 
                 <h1 className={styles.title}>Ney Lanches Amparo</h1>
             </div>
