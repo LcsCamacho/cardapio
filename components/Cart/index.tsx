@@ -9,16 +9,11 @@ import { ComboProps } from '../../types/types';
 export default function Cart() {
     const [modal, setModal] = useState(false)
 
-    function modalControl() {
-        if (modal === false) setModal(true)
-        else setModal(false)
-    }
-
     return (
         <div className={styles.container}>
-            {modal === true ? <CartModal modalOpenProps={modal} /> : <></>}
+            {modal ? <CartModal modalOpenProps={modal} /> : <></>}
 
-            <div className={styles.value} onClick={modalControl}>
+            <div className={styles.value} onClick={()=>setModal(!modal)}>
                 <GiShoppingCart size={20} />
                 <span>CARRINHO (R$ 0,00)</span>
             </div>
