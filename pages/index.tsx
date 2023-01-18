@@ -85,7 +85,7 @@ export default function Home({ cardapioData }: ComboProps) {
           </div>
         </div>
         <div className={styles.cart}>
-          <Cart cardapioData={cardapioData} />
+          <Cart />
         </div>
       </main>
     </>

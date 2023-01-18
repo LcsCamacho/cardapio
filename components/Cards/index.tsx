@@ -2,16 +2,13 @@ import styles from './style.module.scss'
 import Image from 'next/image';
 import useAppData from '../../context/hook/useAppData';
 import { CardapioProps, ComboProps, prodProps } from '../../types/types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 
 
 export default function Cards({ cardapioData }: ComboProps) {
     const { cardapio } = cardapioData
     const [modal, setModal] = useState(false)
-    const ctx = useAppData()
-    var { prods }: prodProps = ctx
-    const [produtos, setProdutos] = useState(prods)
 
     async function colletInfo(i: number, title: string, price: string, description: string, img: string) {
         const prod = {
@@ -21,14 +18,12 @@ export default function Cards({ cardapioData }: ComboProps) {
             description: description,
             img: img,
         }
-        setProdutos([...produtos, prod])
-        prods = produtos
-        console.log(prods)
+
     }
 
     return (
         <div className={styles.cardapioCards}>
-            {modal ? <Modal
+            {modal && <Modal
                 isOpen={modal}
                 onRequestClose={() => setModal(false)}
                 contentLabel="Modal"
@@ -42,19 +37,17 @@ export default function Cards({ cardapioData }: ComboProps) {
                     </header>
                     <main>
                         <span>Observações</span>
-                        <input className={styles.obs} placeholder='Digite suas observações' type="text" />
-                        <input className={styles.finalizar} onClick={()=> setModal(false)} type="button" value={prods}/>
+                        <textarea className={styles.obs} placeholder='Digite suas observações...' />
+                        <input className={styles.finalizar} onClick={() => setModal(false)} type="button" value={'FINALIZAR'} />
                     </main>
                 </div>
-            </Modal>
-                :
-                <></>}
+            </Modal>}
             {cardapio.map((el: CardapioProps, i: number) => (
                 <div key={i} className={styles.card}
-                    onClick={() => { 
+                    onClick={() => {
                         colletInfo(i, el.title, el.price, el.description, el.img)
                         setModal(true)
-                     }}>
+                    }}>
                     <div className={styles.cardText}>
                         <div className={styles.title}>
                             <span>{el.title}</span>

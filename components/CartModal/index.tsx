@@ -11,9 +11,6 @@ interface ModalProps{
 export default function CartModal(props:ModalProps) {
     var { modalOpenProps } = props
     const [modal, setModal] = useState(modalOpenProps)
-    const ctx = useAppData()
-    var { prods }: prodProps = ctx
-    console.log(prods)
 
     function closeModal() {
          setModal(false)
