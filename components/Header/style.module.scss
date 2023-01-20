@@ -48,20 +48,18 @@
         padding: 1rem 6%;
         position: relative;
         height: calc(40vh - 40px);
+        min-height: 250px;
+        align-items: center;
+        color: #fff;
 
-        span {
+        span,.logo {
             width: 100% !important;
             max-width: 200px !important;
-        }
-
-        .logo {
-            width: 160px !important;
-            height: 80px !important;
-            position: absolute;
-            top: -10px !important;
-            margin: 0 !important;
-            object-fit: contain;
-            cursor: pointer;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            height: 60%;
+            grid-area: logo;
         }
 
         .title {
@@ -74,18 +72,20 @@
 }
 
 .checkMenu {
-    position: absolute;
-    right: 15%;
-    top: 10%;
-    margin: 10px;
+    margin-top: 10px;
     border: 1px dashed #fff;
-    padding: 15px;
+    padding: 10px 5px;
+    align-items: center;
+    justify-content: center;
+    height: 70%;
     cursor: pointer;
     display: none;
     font-size: 1.3rem;
+    grid-area: menu;
+    text-align: center;
 
     &:active,&:hover {
-        background-color: #dc4b02ce;
+        background-color: #ff5500ce;
     }
 }
 
@@ -109,13 +109,18 @@
     }
     .mobileMenuContainer {
         width: 40%;
+        max-width: 260px;
         background-color: #fff;
         height: 100vh;
         padding: 10px;
+        display: flex;
+        flex-direction: column;
 
-        .logo {
+        .logoMobileMenu,span {
+            align-self: center;
             cursor: pointer;
-
+            max-height: 200px !important;
+            height: 20% !important;
         }
 
         ul {
@@ -140,6 +145,7 @@
 .infos {
     width: 100%;
     display: none;
+    grid-area: desc;
 
     ul {
         display: flex;
@@ -187,13 +193,17 @@
 }
 @media (max-width: 800px) {
     .subHeader {
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: space-evenly;
-        padding: 0 6% 1rem 6% !important;
+        display: grid !important;
+        grid-template-areas:
+        'logo menu'
+        'desc desc';
+
+        span,.logo {
+            height: 100% !important;
+        }
     }
     .checkMenu {
-        display: block !important;
+        display: flex !important;
         margin: 0;
     }
     .title {
@@ -205,10 +215,9 @@
     }
     .listHeader {
         width: 100%;
-
+        grid-area: desc;
         .infos {
             display: block !important;
-            width: 100%;
 
             ul {
                 width: 100%;

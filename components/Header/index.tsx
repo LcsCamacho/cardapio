@@ -1,8 +1,8 @@
-import styles from './style.module.scss'
-import { BsFillTelephoneFill } from 'react-icons/bs'
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { BsFillTelephoneFill } from 'react-icons/bs';
 import stylesModal from './modal.module.scss';
+import styles from './style.module.scss';
 
 export default function Header() {
     const [modaltiposAtend, setModalTiposAtend] = useState(false)
@@ -53,67 +53,18 @@ export default function Header() {
             'dia': 'Domingo'
         },
     ]
-    const infos = {
-        'modalTiposAtendimento': {
-            open: () => {
-                setModalTiposAtend(true)
-            },
-            close: () => {
-                setModalTiposAtend(false)
-            }
-        },
-        'modalHorariosAtend': {
-            open: () => {
-                setmodalHorariosAtend(true)
-            },
-            close: () => {
-                setmodalHorariosAtend(false)
-            }
-        },
-        'modalFormasPag': {
-            open: () => {
-                setmodalFormasPag(true)
-            },
-            close: () => {
-                setmodalFormasPag(false)
-            }
-        },
-        'modalHelp': {
-            open: () => {
-                setmodalHelp(true)
-            },
-            close: () => {
-                setmodalHelp(false)
-            }
-        }
-    }
-
-    function openMobileMenu() {
-        if (mobileMenu === false) {
-            setMobileMenu(true)
-            return
-        }
-        else {
-            setMobileMenu(false)
-            return
-        }
-    }
-
-    function closeMobileMenu() {
-        setMobileMenu(false)
-    }
 
     return (
-        <header  className={styles.container}>
+        <header className={styles.container}>
             <div className={styles.contentHeader}>
                 <div className={styles.tel}>
                     <BsFillTelephoneFill />
                     <span>19998566555</span>
                 </div>
                 <div className={styles.status}>
-                    {date < 24 && date > 18 ? 
-                    <span className={styles.open}>Aberto</span> : 
-                    <span className={styles.close}>Fechado</span>
+                    {date < 24 && date > 18 ?
+                        <span className={styles.open}>Aberto</span> :
+                        <span className={styles.close}>Fechado</span>
                     }
                 </div>
             </div>
@@ -124,14 +75,14 @@ export default function Header() {
                     height={80}
                     priority
                     alt={'logo'} />
-                <div className={styles.checkMenu} onClick={openMobileMenu}>
-                    Mais Informações
+                <div className={styles.checkMenu} onClick={() => setMobileMenu(!mobileMenu)}>
+                    <p>Mais Informações</p>
                 </div>
-                {mobileMenu === true && (
-                    <div className={styles.mobileMenu} onClick={closeMobileMenu}>
+                {mobileMenu && (
+                    <div className={styles.mobileMenu} onClick={() => setMobileMenu(!mobileMenu)}>
                         <div className={styles.mobileMenuContainer}>
 
-                            <Image className={styles.logo}
+                            <Image className={styles.logoMobileMenu}
                                 src={'/logo.png'}
                                 width={100}
                                 height={70}
@@ -139,13 +90,13 @@ export default function Header() {
                                 alt={'logo'} />
                             <ul>
                                 <li id={styles.tipoAtend}
-                                    onClick={infos.modalTiposAtendimento.open}>Tipos de atendimento</li>
+                                    onClick={() => setModalTiposAtend(!modaltiposAtend)}>Tipos de atendimento</li>
                                 <li id={styles.horarioAtend}
-                                    onClick={infos.modalHorariosAtend.open}>Horário de atendimento</li>
+                                    onClick={() => setmodalHorariosAtend(!modalHorariosAtend)}>Horário de atendimento</li>
                                 <li id={styles.formaPagamento}
-                                    onClick={infos.modalFormasPag.open}>Formas de Pagamentos</li>
+                                    onClick={() => setmodalFormasPag(!modalFormasPag)}>Formas de Pagamentos</li>
                                 <li id={styles.help}
-                                    onClick={infos.modalHelp.open}>Ajuda</li>
+                                    onClick={() => setmodalHelp(!modalHelp)}>Ajuda</li>
                             </ul>
                         </div>
                     </div>)
@@ -154,13 +105,13 @@ export default function Header() {
                 <div className={styles.listHeader}>
                     <ul className={styles.listInfos}>
                         <li id={styles.tipoAtend}
-                            onClick={infos.modalTiposAtendimento.open}>Tipos de atendimento</li>
+                            onClick={() => setModalTiposAtend(!modaltiposAtend)}>Tipos de atendimento</li>
                         <li id={styles.horarioAtend}
-                            onClick={infos.modalHorariosAtend.open}>Horário de atendimento</li>
+                            onClick={() => setmodalHorariosAtend(!modalHorariosAtend)}>Horário de atendimento</li>
                         <li id={styles.formaPagamento}
-                            onClick={infos.modalFormasPag.open}>Formas de Pagamentos</li>
+                            onClick={() => setmodalFormasPag(!modalFormasPag)}>Formas de Pagamentos</li>
                         <li id={styles.help}
-                            onClick={infos.modalHelp.open}>Ajuda</li>
+                            onClick={() => setmodalHelp(!modalHelp)}>Ajuda</li>
                     </ul>
                     <div className={styles.infos}>
                         <ul>
@@ -180,13 +131,12 @@ export default function Header() {
                     </div>
                 </div>
 
-
-                {modaltiposAtend === true && (
+                {modaltiposAtend && (
                     <div className={stylesModal.modal}>
                         <div className={stylesModal.modalContainer}>
                             <header>
                                 <span>Detalhes</span>
-                                <span className={stylesModal.close} onClick={infos.modalTiposAtendimento.close}>X</span>
+                                <span className={stylesModal.close} onClick={() => setModalTiposAtend(!modaltiposAtend)}>X</span>
                             </header>
                             <main>
                                 <div className={stylesModal.modalCard}>
@@ -220,12 +170,12 @@ export default function Header() {
                         </div>
                     </div>
                 )}
-                {modalHorariosAtend === true && (
+                {modalHorariosAtend && (
                     <div className={stylesModal.modal} >
                         <div className={stylesModal.modalContainer}>
                             <header>
                                 <span>Horário de Funcionamento</span>
-                                <span className={stylesModal.close} onClick={infos.modalHorariosAtend.close}>X</span>
+                                <span className={stylesModal.close} onClick={() => setmodalHorariosAtend(!modalHorariosAtend)}>X</span>
                             </header>
                             <main>
                                 <table>
@@ -251,13 +201,13 @@ export default function Header() {
                     </div>
 
                 )}
-                {modalFormasPag === true && (
+                {modalFormasPag && (
                     <div className={stylesModal.modalFormaPagamento}>
                         <div className={stylesModal.modal} >
                             <div className={stylesModal.modalContainer}>
                                 <header>
                                     <span>Formas de Pagamento</span>
-                                    <span className={stylesModal.close} onClick={infos.modalFormasPag.close}>X</span>
+                                    <span className={stylesModal.close} onClick={() => setmodalFormasPag(!modalFormasPag)}>X</span>
                                 </header>
                                 <main>
                                     <span>Pix</span>
@@ -268,13 +218,13 @@ export default function Header() {
                         </div>
                     </div>
                 )}
-                {modalHelp === true && (
+                {modalHelp && (
                     <div className={stylesModal.modalHelp}>
                         <div className={stylesModal.modal} >
                             <div className={stylesModal.mapContainer}>
                                 <header>
                                     <span>Localização</span>
-                                    <span className={stylesModal.close} onClick={infos.modalHelp.close}>X</span>
+                                    <span className={stylesModal.close} onClick={() => setmodalHelp(!modalHelp)}>X</span>
                                 </header>
                                 <main className={stylesModal.helpMain}>
                                     <p>Avenida Doutor Carlos Burgos, 3380, Loteamento Nardini, Amparo - SP, 13900000</p>

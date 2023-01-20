@@ -1,24 +1,27 @@
 import styles from './style.module.scss'
 import Image from 'next/image';
-import useAppData from '../../context/hook/useAppData';
-import { CardapioProps, ComboProps, prodProps } from '../../types/types';
-import { useEffect, useState } from 'react';
+import { CardapioProps, ComboProps, productsData } from '../../types/types';
+import { useState } from 'react';
 import Modal from 'react-modal';
+import { useDispatch } from 'react-redux';
+import { addItemReducer } from '../../features/redux/cart-slice';
 
 
 export default function Cards({ cardapioData }: ComboProps) {
     const { cardapio } = cardapioData
     const [modal, setModal] = useState(false)
+    const [cart, setCart] = useState<productsData>()
+    const dispatch = useDispatch();
 
-    async function colletInfo(i: number, title: string, price: string, description: string, img: string) {
+    async function colletInfo(i: number, title: string, price: string, img: string, description?: string) {
         const prod = {
             i: i,
             title: title,
             price: price,
-            description: description,
+            description: description as string,
             img: img,
         }
-
+        setCart(prod)
     }
 
     return (
@@ -38,14 +41,18 @@ export default function Cards({ cardapioData }: ComboProps) {
                     <main>
                         <span>Observações</span>
                         <textarea className={styles.obs} placeholder='Digite suas observações...' />
-                        <input className={styles.finalizar} onClick={() => setModal(false)} type="button" value={'FINALIZAR'} />
+                        <input className={styles.finalizar} onClick={() => {
+                            setModal(false)
+                            dispatch(addItemReducer(cart))
+
+                        }} type="button" value={'FINALIZAR'} />
                     </main>
                 </div>
             </Modal>}
             {cardapio.map((el: CardapioProps, i: number) => (
                 <div key={i} className={styles.card}
                     onClick={() => {
-                        colletInfo(i, el.title, el.price, el.description, el.img)
+                        colletInfo(i, el.title, String(el.price), String(el.img), el.description)
                         setModal(true)
                     }}>
                     <div className={styles.cardText}>

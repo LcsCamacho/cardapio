@@ -1,13 +1,18 @@
 import '../styles/globals.scss'
 import type { AppProps } from 'next/app'
-import { AppProvider } from './../context/appContext';
-AppProvider
+import { Provider } from 'react-redux'
+import { makeStore, persistor, store } from '../features/redux/store'
+import { PersistGate } from 'redux-persist/integration/react'
 
-export default function App({ Component, pageProps }: AppProps) {
+
+function App({ Component, pageProps }: AppProps) {
   return (
-    <AppProvider>
-      <Component {...pageProps} />
-    </AppProvider>
-
+    <Provider store={store}>
+      <PersistGate loading={<div>LOADING</div>} persistor={persistor}>
+        <Component {...pageProps} />
+      </PersistGate>
+    </Provider>
   )
 }
+
+export default App

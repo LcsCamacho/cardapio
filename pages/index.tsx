@@ -1,11 +1,12 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.scss'
-import Header from '../components/Header'
-import { GetStaticProps } from 'next'
+
+import { GetStaticProps } from 'next';
+import Head from 'next/head';
 import { useState } from 'react';
-import Cards from '../components/Cards'
-import Cart from './../components/Cart/index';
+import Cards from '../components/Cards';
+import Header from '../components/Header';
+import styles from '../styles/Home.module.scss';
 import { ComboProps } from '../types/types';
+import Cart from './../components/Cart/index';
 
 const combos: string[] = [
   'Combos Familias',
@@ -28,23 +29,22 @@ const combos: string[] = [
 export default function Home({ cardapioData }: ComboProps) {
   const [comboFamily, setComboFamily] = useState(false)
   const [promocoes, setPromocoes] = useState(false)
+  const [cart, setCart] = useState<any>([])
   const states = [
     comboFamily,
     promocoes
   ]
-  const functions: string[] = [
+  const functions = [
     'comboFamily',
     'promocoes'
   ]
 
-  const control: any = {
+  const control:any = {
     'promocoes': () => {
-      if (promocoes === false) setPromocoes(true)
-      else setPromocoes(false)
+      setPromocoes(!promocoes)
     },
     'comboFamily': () => {
-      if (comboFamily === false) setComboFamily(true)
-      else setComboFamily(false)
+      setComboFamily(!comboFamily)
     }
   }
 
@@ -85,7 +85,7 @@ export default function Home({ cardapioData }: ComboProps) {
           </div>
         </div>
         <div className={styles.cart}>
-          <Cart />
+          <Cart/>
         </div>
       </main>
     </>

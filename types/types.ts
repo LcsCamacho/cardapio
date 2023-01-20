@@ -1,7 +1,7 @@
 interface CardapioProps {
-    description: string;
-    img: string;
-    price: string;
+    description?: string;
+    img?: string;
+    price:  string | number;
     title: string
 }
 
@@ -12,7 +12,7 @@ interface ComboProps {
 }
 type productsData = {
     i: number,
-    price: string;
+    price: string | number;
     title: string;
     description: string;
     img: string;
@@ -23,4 +23,4 @@ interface prodProps {
 
 
 
-export type { CardapioProps, ComboProps, prodProps }
+export type { CardapioProps, ComboProps, prodProps, productsData }

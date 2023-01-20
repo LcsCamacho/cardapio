@@ -1,33 +1,41 @@
 .container {
     padding: 10px;
     position: fixed;
-    bottom: 10px;
+    top: 50vh;
+    right: 0;
+    background: #e2520a;
+    border-radius: 20px 0 0 20px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    gap: 10px;
+    color: #fff;
+    font-size: 1.3rem;
+    transform: translateX(77%);
+    transition: transform .2s;
 
-    .value,.search {
+    &:hover{
+        transform: translateX(10%);
+        
+    }
+    &:active{
+        opacity: 0;
+    }
+
+    .value {
         display: inline-flex;
-        background: #e2520a;
-        border-radius: 20px;
-        padding: 10px;
         align-items: center;
         transition: background-color .2s;
         cursor: pointer;
-        box-shadow: 4px 3px 24px 2px #E2520A9e;
 
-        &:hover{
-            filter: brightness(1.2);
+        span{
+            padding-right: 12px;
         }
-    }
-    .value {
+
         svg {
             margin-bottom: 2px;
+            margin-right: 3px;
         }
-    }
 
-    .search {
-        padding: 10px 15px;
     }
 }
