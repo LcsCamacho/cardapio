@@ -8,7 +8,7 @@ import styles from '../styles/Home.module.scss';
 import { ComboProps } from '../types/types';
 import Cart from './../components/Cart/index';
 
-const combos: string[] = [
+const combos = [
   'Combos Familias',
   'Promoções',
 
@@ -93,10 +93,8 @@ export default function Home({ cardapioData }: ComboProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  var cardapioData
-  const resp = await fetch('https://cardapio-psi-nine.vercel.app/api/cardapio')
+  const cardapioData = await fetch('https://cardapio-psi-nine.vercel.app/api/cardapio')
     .then((res) => res.json())
-    .then((data) => cardapioData = data)
     .catch(err => console.log('Erro:::::' + err))
 
 

@@ -12,7 +12,9 @@
     justify-content: center;
     color: #000;
     z-index: +1;
-    
+
+
+
     .modalContainer,.mapContainer {
         width: 50vw;
         min-width: 350px;
@@ -25,6 +27,7 @@
         z-index: +1;
         position: relative;
         top: -10%;
+
 
         header {
             display: flex;
@@ -64,6 +67,7 @@
             border-top: 1px solid #b8b8b8;
             width: 100%;
             padding: 10px;
+            height: 100%;
 
             
 
@@ -145,10 +149,16 @@
         }
     }
 }
+
 .mapContainer {
-    max-width: 100vw !important;
-    width: 70vw !important;
+    top: 0 !important;
+    padding: 0;
+
     .map {
         border: none;
+        border-radius: 5px;
+        background: #e2520a;
+
+        
     }
 }

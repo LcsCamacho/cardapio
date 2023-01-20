@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { BsFillTelephoneFill } from 'react-icons/bs';
 import stylesModal from './modal.module.scss';
 import styles from './style.module.scss';
+import Maps from '../map';
 
 export default function Header() {
     const [modaltiposAtend, setModalTiposAtend] = useState(false)
@@ -228,9 +229,7 @@ export default function Header() {
                                 </header>
                                 <main className={stylesModal.helpMain}>
                                     <p>Avenida Doutor Carlos Burgos, 3380, Loteamento Nardini, Amparo - SP, 13900000</p>
-                                    <iframe className={stylesModal.map}
-                                        src="https://www.google.com/maps?q=Avenida Doutor Carlos Burgos, 3380, Loteamento Nardini, Amparo - SP, 13900000, Ney Lanches Amparo&amp;output=embed"
-                                        width="100%" height="450" />
+                                    <Maps />
                                 </main>
                             </div>
                         </div>

@@ -1,11 +1,8 @@
-.mapContainer {
-    width: 500px;
-    height: 500px;
-    min-width: 320px;
-    min-height: 400px;
-    padding: 10px;
+.mapComponent {
+    width: 100%;
+    height: 40vh;
 }
 
-.mapMarker {
+.markerLabel {
     margin-top: -30px;
 }
