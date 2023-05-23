@@ -2,16 +2,17 @@ import style from './style.module.scss'
 import Modal from 'react-modal'
 import Image from 'next/image';
 import { Key, useEffect, useState } from "react";
-import { productsData } from '../../types/types';
+import { productsData, ProductsDataV2  } from '../../types/types';
 import { useDispatch } from 'react-redux';
 import { removeItemReducer } from '../../features/redux/cart-slice';
 import { formatBRL } from '../../hooks/useGetCurrency';
-
+import { addItemReducer } from '../../features/redux/pedidos-slice';
 interface ModalProps {
     modalOpenProps: boolean;
     onRequestClose: () => void;
-    cartData: productsData[]
+    cartData: ProductsDataV2
 }
+const dataFormatadaComHora = ` ${new Date().toLocaleDateString()} ${new Date().getHours()}:${new Date().getMinutes()}`
 
 export default function CartModal({ modalOpenProps, onRequestClose, cartData }: ModalProps) {
     const dispatch = useDispatch();
@@ -28,12 +29,13 @@ export default function CartModal({ modalOpenProps, onRequestClose, cartData }: 
 
     useEffect(() => {
         setCart(cartData)
-
     }, [cartData])
 
     useEffect(() => {
         setValorTotal(0)
-        cart.forEach((element: productsData, i: number) => {
+        if(cart.items.length === 0) return setValorTotal(0)
+        console.log(cart)
+        cart.items.forEach((element: productsData, i: number) => {
             const price = formatToNumber(element.price as string)
             setValorTotal(state => state + price)
         });
@@ -59,7 +61,7 @@ export default function CartModal({ modalOpenProps, onRequestClose, cartData }: 
                     <span onClick={onRequestClose} className={style.close}>X</span>
                 </header>
                 <main>
-                    {cart.length === 0 ? <span>Seu pedido está vazio :(</span> :
+                    {cart.items.length === 0 ? <span>Seu pedido está vazio :(</span> :
                         <table>
                             <thead>
                                 <tr>
@@ -69,7 +71,7 @@ export default function CartModal({ modalOpenProps, onRequestClose, cartData }: 
                                 </tr>
                             </thead>
                             <tbody>
-                                {cart.map((item: productsData, index: number) => (
+                                {cart.items.map((item: productsData, index: number) => (
                                     <tr key={index}>
                                         <td>
                                             <Image src={"/images/" + item.img}
@@ -93,6 +95,17 @@ export default function CartModal({ modalOpenProps, onRequestClose, cartData }: 
                         </table>
                     }
                     <button type='button'
+                        onClick={() => dispatch(addItemReducer(cart.items.map((item: productsData, index) => {
+                            dispatch(removeItemReducer(index))
+                            return {
+                                title: item.title,
+                                price: item.price,
+                                img: item.img,
+                                description: item.description,
+                                i: item.i,
+                                data: dataFormatadaComHora
+                            }
+                        })))}
                         className={style.finalizar}>
                         Finalizar {formatBRL(valorTotal)}
                     </button>

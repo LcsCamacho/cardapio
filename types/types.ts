@@ -16,10 +16,17 @@ type productsData = {
     title: string;
     description: string;
     img: string;
+    data?: Date;
 }
 interface prodProps {
     prods?:productsData[] | any
 }
+
+export interface ProductsDataV2 {
+    
+    items: productsData[]
+}
+
 
 
 
